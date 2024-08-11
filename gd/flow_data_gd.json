@@ -1,0 +1,90 @@
+{
+	"categories": [
+		{"name": "GD - Control", "symbol": "GDc", "color": "cornflowerblue", "requiremodule": "gd", "blocks": [
+			"gd_init_memory", "gd_kill_player", "gd_complete_level", "gd_set_speed", "gd_set_attempt", "gd_set_x_pos", "gd_set_y_pos", "gd_set_button_pressed",
+			"gd_toggle_anticheat", "gd_toggle_accurate_percent", "gd_toggle_custom_object_limit", "gd_toggle_practice_song", "gd_toggle_jump_rotation"
+		]},
+		{"name": "GD - Info", "symbol": "GDi", "color": "yellow", "requiremodule": "gd", "blocks": [
+			"gd_username", "gd_level_name", "gd_level_creator", "gd_level_id", "gd_level_stars", "gd_object_count", "gd_song_id",
+			"gd_in_level", "gd_is_practice", "gd_in_editor", "gd_is_dead", "gd_is_button_pressed", "gd_is_button_pressed_in_air",
+			"gd_current_percent", "gd_current_speed", "gd_current_attempt", "gd_get_mode", "gd_total_attempts", "gd_total_jumps", "gd_normal_record", "gd_practice_record",
+			"gd_x_pos", "gd_y_pos"
+		]},
+		{"name": "GD - Database", "symbol": "GDd", "color": "greenyellow", "requiremodule": "gd", "blocks": [
+			"gd_init_database", "gd_database_dict", "gd_close_database", "gd_load_created_levels", "gd_load_saved_levels", "gd_save_created_levels", "gd_save_saved_levels",
+			"gd_create_level", "gd_get_level_property", "gd_set_level_property", "gd_set_level_song"
+		]},
+		{"name": "GD - Level Editor", "symbol": "GDe", "color": "cyan", "requiremodule": "gd", "blocks": [
+			"gd_open_editor", "gd_set_editor", "gd_add_object", "gd_add_objects", "gd_create_object", "gd_copy_object", "gd_set_object_property", "gd_get_object_property",
+			"gd_get_object_list", "gd_set_fixed_ids", "gd_move_object_steps", "gd_rotate_object_group", "gd_scale_object_group", "gd_flip_object_group"
+		]}
+	],
+	"blocks": {
+		"gd_open_editor": {"text": "Open level editor", "args": [["in", "Level"]], "scaffold": "gd.api.Editor()", "postscaffold": "gded = {1}", "help": "Creates an editor object for a level. The contents of the level can then be changed."},
+		"gd_set_editor": {"text": "Set active editor", "args": [["in", "Editor"]], "scaffold": "gded = {0}", "help": "Sets the active editor to be used in future editor commands."},
+		"gd_add_object": {"text": "Add object", "args": [["in", "Object"]], "scaffold": "gded.add_objects({0})", "help": "Adds an object to the current level."},
+		"gd_add_objects": {"text": "Add objects", "args": [["in", "Object list"]], "scaffold": "gded.add_objects(*{0})", "help": "Adds multiple objects in an array to the current level."},
+		"gd_create_object": {"text": "Create object", "short": "Object", "args": [["ni", "Object ID"], ["ni", "X position"], ["ni", "Y position"]], "scaffold": "_gd_createobject({0}, {1}, {2})", "help": "Makes an object. Use 'add object' to add it to a level."},
+		"gd_copy_object": {"text": "Copy object", "args": [["in", "Object"]], "scaffold": "deepcopy({0})", "help": "Returns a copy of an object."},
+		"gd_set_object_property": {"text": "Set object property", "args": [["in", "Object"], ["in", "Property (id, x, y, rotation, scale, etc)"], ["in", "Value"]], "scaffold": "_gd_setobjectproperty({0}, {1}, {2}, True)", "help": "Sets a property for an object. The property can be id, x, y, rotation, scale, color_1, color_2, text, editor_layer_1, editor_layer_1, do_not_enter, or do_not_fade."},
+		"gd_get_object_property": {"text": "Get object property", "args": [["in", "Object"], ["in", "Property (id, x, y, rotation, scale, etc)"]], "scaffold": "_gd_setobjectproperty({0}, {1}, None, False)", "help": "Gets a property from an object. The property can be any of the ones from the 'set object property' block."},
+		"gd_get_object_list": {"text": "Get object list", "scaffold": "gded.get_objects()", "help": "Returns the list of all of the objects in the active editor."},
+		"gd_set_fixed_ids": {"text": "Set fixed object IDs", "short": "Set fixed IDs", "args": [["in", "ID dictionary"]], "scaffold": "gdfixedids = deepcopy({0})", "help": "Sets a dicionary of object IDs in the format of {id: ['h_flip', 'v_flip', 'rotate', 'scale']}, which are used in blocks including 'move object in direction' and 'rotate object group'. For example, if 'rotate' is present in the array, it will not be rotated."},
+		"gd_move_object_steps": {"text": "Move object in direction", "args": [["in", "Object"], ["ni", "X movement"], ["ni", "Y movement"], ["ni", "Angle"]], "scaffold": "_gd_movesteps({0}, {1}, {2}, {3})", "help": "Moves an object the specified amount of steps in a direction. It will return a new object and not change the original one."},
+		"gd_rotate_object_group": {"text": "Rotate object array", "args": [["in", "Object array"], ["in", "Origin object"], ["ni", "Angle"]], "scaffold": "_gd_rotategroup({0}, {1}, {2})", "help": "Rotates a group of objects around an origin object. It will return a new array and not change the original one."},
+		"gd_scale_object_group": {"text": "Scale object array", "args": [["in", "Object array"], ["in", "Origin object"], ["ni", "Scale"]], "scaffold": "_gd_scalegroup({0}, {1}, {2})", "help": "Scales a group of objects centered on an origin object. It will return a new array and not change the original one."},
+		"gd_flip_object_group": {"text": "Flip object array", "args": [["in", "Object array"], ["in", "Origin object"], ["in", "Flip horizontally"], ["in", "Flip vertically"]], "scaffold": "_gd_flipgroup({0}, {1}, {2}, {3})", "help": "Flips a group of objects centered on an origin object. It will return a new array and not change the original one."},
+		
+		"gd_init_database": {"text": "Load database", "scaffold": "gddb = gd.api.save.load()", "help": "Loads the database. This block must be used before using any blocks in the database category."},
+		"gd_database_dict": {"text": "Database dictionary", "short": "Database dict", "scaffold": "gddb.main", "help": "Returns the Geometry Dash save database as a dictionary."},
+		"gd_close_database": {"text": "Save database", "scaffold": "gd.api.save.dump(gddb)", "help": "Saves the database, to be used in Geometry Dash."},
+		"gd_load_created_levels": {"text": "Load created levels", "scaffold": "gddb.load_my_levels()", "help": "Returns the list of levels you've created in GD as an array."},
+		"gd_load_saved_levels": {"text": "Load saved levels", "scaffold": "gddb.load_saved_levels()", "help": "Returns the list of saved levels in GD as an array."},
+		"gd_save_created_levels": {"text": "Save created levels", "args": [["in", "Level list"]], "scaffold": "gddb.dump_my_levels({0})", "help": "Saves a list of levels to the GD save database as your created levels."},
+		"gd_save_saved_levels": {"text": "Save saved levels", "args": [["in", "Level list"]], "scaffold": "gddb.dump_saved_levels({0})", "help": "Saves a list of levels to the GD save database as your saved levels."},
+		"gd_create_level": {"text": "Create level", "args": [["in", "Level name"]], "scaffold": "gd.api.LevelAPI(level_string=gded.dump(), level_type=gd.api.LevelType.EDITOR, name={0})", "help": "Creates a level from the contents of the active editor."},
+		"gd_get_level_property": {"text": "Get level property", "args": [["in", "Level"], ["in", "Property (name, description, length, version, verified)"]], "scaffold": "_gd_getlevelproperty({0}, {1})", "help": "Returns a property from a level. The property can be name, description, length, version, or verified."},
+		"gd_set_level_property": {"text": "Set level property", "args": [["in", "Level"], ["in", "Property (name, description, length, version, verified)"], ["in", "Value"]], "scaffold": "_gd_setlevelproperty({0}, {1}, {2})", "help": "Sets a property for a level. The property can be name, description, length, version, or verified. The length property is a number from 0 to 4 representing tiny, short, medium, long, and xl respectively."},
+		"gd_set_level_song": {"text": "Set level song", "args": [["in", "Level"], ["ni", "Song ID"], ["in", "Custom song"]], "scaffold": "_gd_setlevelsong({0}, {1}, {2})", "help": "Sets the song ID for a level. If custom is true, it will be a custom song ID, otherwise an official one."},
+		
+		"gd_init_memory": {"text": "Initialise memory", "short": "Init memory", "scaffold": "gdmem = gd.memory.get_memory()", "help": "Initialises the control and info categories. This block must be used before using any blocks in those categories. It will return an error if Geometry Dash is not open."},
+		"gd_kill_player": {"text": "Kill player", "scaffold": "gdmem.player_kill()", "help": "Kills the player."},
+		"gd_complete_level": {"text": "Complete level", "scaffold": "gdmem.set_speed_value(100000)", "help": "Instantly completes a level."},
+		"gd_set_speed": {"text": "Set speed", "args": [["ni", "Speed"]], "scaffold": "gdmem.set_speed_value({0})", "help": "Sets the current speed of the level."},
+		"gd_set_attempt": {"text": "Set attempt", "args": [["ni", "Attempt"]], "scaffold": "gdmem.set_attempt({0})", "help": "Sets the player's current attempt."},
+		"gd_set_x_pos": {"text": "Set player X", "args": [["ni", "X position"]], "scaffold": "gdmem.set_x_pos({0})", "help": "Sets the player's X position."},
+		"gd_set_y_pos": {"text": "Set player Y", "args": [["ni", "Y position"]], "scaffold": "gdmem.set_y_pos({0})", "help": "Sets the player's Y position."},
+		"gd_set_button_pressed": {"text": "Set button pressed", "args": [["in", "State"]], "scaffold": "_gd_writebool({0}, 0x11, 0x12)", "help": "Sets whether the button is pressed or not."},
+		"gd_toggle_anticheat": {"text": "Toggle anticheat", "args": [["in", "State"]], "scaffold": "gdmem.enable_anticheat() if {0} else gdmem.disable_anticheat()", "help": "Enables or disables anticheat."},
+		"gd_toggle_accurate_percent": {"text": "Toggle accurate percent", "args": [["in", "State"]], "scaffold": "gdmem.enable_accurate_percent() if {0} else gdmem.disable_accurate_percent()", "help": "Enables or disables accurate percent."},
+		"gd_toggle_custom_object_limit": {"text": "Toggle custom object limit bypass", "args": [["in", "State"]], "scaffold": "gdmem.enable_custom_object_limit() if {0} else gdmem.disable_custom_object_limit()", "help": "Enables or disables the object limit bypass for custom objects."},
+		"gd_toggle_practice_song": {"text": "Toggle practice song bypass", "args": [["in", "State"]], "scaffold": "gdmem.enable_practice_song() if {0} else gdmem.disable_practice_song()", "help": "Enables or disabled the practice song bypass."},
+		"gd_toggle_jump_rotation": {"text": "Toggle jump rotation", "args": [["in", "State"]], "scaffold": "gdmem.unlock_jump_rotation() if {0} else gdmem.lock_jump_rotation()", "help": "Enables or disables the cube rotating when jumping."},
+		
+		"gd_username": {"text": "Player name", "scaffold": "gdmem.get_user_name()", "help": "Returns the username of the player."},
+		"gd_level_name": {"text": "Level name", "scaffold": "gdmem.get_editor_level_name() if gdmem.is_in_editor() else gdmem.get_level_name()", "help": "Returns the current level name."},
+		"gd_level_creator": {"text": "Level creator", "scaffold": "gdmem.get_level_creator()", "help": "Returns the name of the current level's creator."},
+		"gd_level_id": {"text": "Level ID", "scaffold": "gdmem.get_level_id()", "help": "Returns the ID of the current level."},
+		"gd_level_stars": {"text": "Level stars", "scaffold": "gdmem.get_level_stars()", "help": "Returns the number of stars the current level has."},
+		"gd_object_count": {"text": "Object count", "scaffold": "gdmem.get_object_count()", "help": "Returns the object count of the current level."},
+		"gd_song_id": {"text": "Song ID", "scaffold": "gdmem.get_song_id()", "help": "Returns the song ID of the current level."},
+		"gd_in_level": {"text": "In level", "scaffold": "gdmem.is_in_level()", "help": "Returns true if the player is currently playing a level."},
+		"gd_is_practice": {"text": "Is practice mode", "scaffold": "gdmem.is_practice_mode()", "help": "Returns true if the player is currently in practice mode."},
+		"gd_in_editor": {"text": "In editor", "scaffold": "gdmem.is_in_editor()", "help": "Returns true if the player is in the level editor."},
+		"gd_is_dead": {"text": "Is dead", "scaffold": "gdmem.is_dead()", "help": "Returns true if the player is dead."},
+		"gd_is_button_pressed": {"text": "Is button pressed", "scaffold": "gdmem.read_bool(0x3222D0, 0x164, 0x224, 0x611)", "help": "Returns true if the button is pressed."},
+		"gd_is_button_pressed_in_air": {"text": "Is button pressed in air", "scaffold": "gdmem.read_bool(0x3222D0, 0x164, 0x224, 0x612)", "help": "Returns true if the button is pressed in the air."},
+		"gd_current_percent": {"text": "Current percent", "scaffold": "gdmem.get_percent()", "help": "Returns the player's current percent."},
+		"gd_current_speed": {"text": "Current speed", "scaffold": "gdmem.get_speed_value()", "help": "Returns the current speed of the level."},
+		"gd_current_attempt": {"text": "Current attempt", "scaffold": "gdmem.get_attempt()", "help": "Returns the player's current attempt."},
+		"gd_get_mode": {"text": "Current mode", "scaffold": "_gd_getmode()", "help": "Returns the player's current mode number. 0 = Cube, 1 = Ship, 2 = Ball, 3 = Ufo, 4 = Wave, 5 = Robot, 6 = Spider"},
+		"gd_total_attempts": {"text": "Total attempts", "scaffold": "gdmem.get_attempts()", "help": "Returns the total number of attempts on the current level."},
+		"gd_total_jumps": {"text": "Total jumps", "scaffold": "gdmem.get_jumps()", "help": "Returns the total number of jumps on the current level."},
+		"gd_normal_record": {"text": "Normal mode record", "scaffold": "gdmem.get_normal_percent()", "help": "Returns the normal mode record for the current level."},
+		"gd_practice_record": {"text": "Practice mode record", "scaffold": "gdmem.get_practice_percent()", "help": "Returns the practice mode record for the current level."},
+		"gd_x_pos": {"text": "Player X", "scaffold": "gdmem.get_x_pos()", "help": "Returns the player's X position."},
+		"gd_y_pos": {"text": "Player Y", "scaffold": "gdmem.get_y_pos()", "help": "Returns the player's Y position."}
+	},
+	"functionalities": {"gd": false},
+	"funcscaffold": {"gd": {"name": "Geometry Dash", "imports": "import gd\nfrom copy import deepcopy", "modules": ["gd.py"], "functions": "def _gd_getmode():\n    modekey = {0: 0, 0x1: 1, 0x10000: 2, 0x100: 3, 0x1000000: 4, 0x100000000: 5, 0x10000000000: 6}\n    return modekey.get(gdmem.read_bytes(6, 0x3222D0, 0x164, 0x224, 0x638).as_int(), -1)\ndef _gd_writebool(v, *p):\n    for x in p:\n        gdmem.write_bool(v, 0x3222D0, 0x164, 0x224, 0x600+x)\ndef _gd_setlevelproperty(l, p, v):\n    if p in ['name', 'description', 'version', 'verified', 'length']:\n        setattr(l, p, v)\ndef _gd_getlevelproperty(l, p):\n    if p in ['name', 'description', 'version', 'verified', 'length']:\n        return getattr(l, p)\ndef _gd_setlevelsong(l, i, c):\n    if c: l.custom_song = i\n    else: l.official_song = i\ndef _gd_createobject(i, x, y):\n    return gd.api.Object(id=i, x=x*30+15, y=y*30+15)\ndef _gd_setobjectproperty(o, p, v, s):\n    sg = setattr if s else getattr\n    if p in ['x', 'y']:\n        if s: return setattr(o, p, v*30+15)\n        else: return (getattr(o, p)-15)/30\n    elif p in ['id', 'rotation', 'scale', 'color_1', 'color_2', 'text', 'editor_layer_1', 'editor_layer_2', 'do_not_fade', 'do_not_enter']:\n        return sg(o, p, v)\ndef _gd_movesteps(o, x, y, angle):\n    o2 = deepcopy(o)\n    o2.rotation = 0\n    o2.x += x\n    o2.y += y\n    return _gd_rotategroup([o2], o, angle)[0]\ndef _gd_rotategroup(o, origin, angle):\n    if angle == None: angle = origin.rotation\n    o = deepcopy(o)\n    ox, oy = origin.x, origin.y\n    for p in o:\n        a = angle\n        radians = math.radians(a)\n        x, y = p.x, p.y\n        p.x = ox + math.cos(radians) * (x - ox) + math.sin(radians) * (y - oy)\n        p.y = oy - math.sin(radians) * (x - ox) + math.cos(radians) * (y - oy)\n        if not 'rotate' in gdfixedids.get(p.id, []):\n            if p.rotation == None: p.rotation = angle\n            else: p.rotation += angle\n    return o\ndef _gd_scalegroup(o, origin, scale):\n    if scale == None: scale = origin.scale\n    o = deepcopy(o)\n    ox, oy = origin.x, origin.y\n    for p in o:\n        p.x = (p.x-ox) * scale+ox\n        p.y = (p.y-oy) * scale+oy\n        if not 'scale' in gdfixedids.get(p.id, []):\n            if p.scale == None: p.scale = scale\n            else: p.scale = scale-p.scale\n    return o\ndef _gd_flipgroup(o, origin, h, v):\n    if h == None: h = origin.h_flipped\n    if v == None: v = origin.v_flipped\n    o = deepcopy(o)\n    ox, oy = origin.x, origin.y\n    for p in o:\n        f = gdfixedids.get(p.id, [])\n        if h: p.x -= (p.x-ox)*2\n        if v: p.y -= (p.y-oy)*2\n        if h and not 'h_flip' in f: p.h_flipped = not p.h_flipped\n        if v and not 'v_flip' in f: p.v_flipped = not p.v_flipped\n        if h != v and p.rotation != None and not 'rotate' in f:\n            p.rotation = -p.rotation\n    return o", "init": "gdfixedids = {}", "globals": ["gdmem", "gddb", "gded", "gdfixedids"]}}
+}

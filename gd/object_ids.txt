@@ -1,0 +1,41 @@
+Default block - 1
+Full block - 83
+Line block - 2
+Corner block - 3
+Dot block - 4
+Filler block - 5
+Cap block - 6
+Column block - 7
+Normal slope - 1743 (-30)
+Half slope - 1744 (-30)
+
+Full spike - 8
+Half spike - 39 (-9)
+Large saw - 1705
+Medium - 1706
+Small - 1707
+
+Yellow jump pad - 35 (-13)
+Pink - 140 (-13)
+Red - 1332 (-12.5)
+Blue - 67 (-12)
+Yellow ring - 36
+Pink - 141
+Red - 1333
+Blue - 84
+Green - 1022
+Black - 1330
+Green dash orb - 1704
+Pink dash orb - 1751
+
+Normal gravity portal - 10
+Reverse gravity portal - 11
+Large portal - 99
+Mini portal - 101
+Cube portal - 12
+Ship - 13 (3 blocks above, 4 below)
+Ball - 47 (2 blocks above, 3 below)
+UFO - 111
+Wave - 660
+Robot - 745
+Spider - 1331
